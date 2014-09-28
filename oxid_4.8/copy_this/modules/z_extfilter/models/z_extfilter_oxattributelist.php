@@ -1,21 +1,18 @@
 <?php
-class z_extfilter_oxattributelist extends z_extfilter_oxattributelist_parent{
-    public function getCategoryAttributes( $sActCat, $iLang )
+class z_extfilter_oxattributelist extends z_extfilter_oxattributelist_parent
+{
+    public function getCategoryAttributes($sActCat, $iLang)
     {
         startProfile("getattributes");
-        
-        $aAttributes    = array();
-        $blActiveFilter = false;
         $aSessionFilter = oxSession::getVar( 'session_attrfilter' );
         
-        //get Attriibutes
-        $aAllAttributes = $this->_getAttributeValues( $sActCat, array());
+        //get Attributes
+        $aAllAttributes = $this->_getAttributeValues($sActCat, array(), $iLang);
         
         //if there are any
         if (count($aAllAttributes)) {
             $oStr = getStr();
             //loop through results
-            $aAttributes = array();
             foreach ($aAllAttributes as $aAttributeValues){
                 $sAttId = $aAttributeValues["sAttId"];
                 $sAttTitle = $aAttributeValues["sAttTitle"];
@@ -34,7 +31,7 @@ class z_extfilter_oxattributelist extends z_extfilter_oxattributelist_parent{
                     //reset current attribute
                     unset($aTestFilter[$sActCat][$iLang][$sAttId]);
                     //get Articles
-                    $aCurrentAttributes = $this->_getAttributeValues( $sActCat,$aTestFilter);
+                    $aCurrentAttributes = $this->_getAttributeValues($sActCat, $aTestFilter, $iLang);
                     $aCurrentAttributeValues[$sAttId] = array();
                     foreach ($aCurrentAttributes as $aCurrentAttribute){
                         $aCurrentAttributeValues[$sAttId][] = strtolower($aCurrentAttribute["sAttValue"]);
@@ -69,12 +66,11 @@ class z_extfilter_oxattributelist extends z_extfilter_oxattributelist_parent{
         stopProfile("getattributes");
         return $this;
     }
-    protected function _getAttributeValues( $sActCat, $aFilter){
+    protected function _getAttributeValues( $sActCat, $aFilter, $iLang){
 
         $oArtList = oxNew( "oxarticlelist");
         $oArtList->loadCategoryIDs( $sActCat, $aFilter );
         $aRet = array();
-        $iLang = oxLang::getInstance()->getBaseLanguage();
 
         // Only if we have articles
         if (count($oArtList) > 0 ) {
