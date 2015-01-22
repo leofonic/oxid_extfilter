@@ -4,7 +4,7 @@ class z_extfilter_oxattributelist extends z_extfilter_oxattributelist_parent
     public function getCategoryAttributes($sActCat, $iLang)
     {
         startProfile("getattributes");
-        $aSessionFilter = oxSession::getVar( 'session_attrfilter' );
+        $aSessionFilter = oxRegistry::getSession()->getVariable( 'session_attrfilter' );
         
         //get Attributes
         $aAllAttributes = $this->_getAttributeValues($sActCat, array(), $iLang);
@@ -62,7 +62,7 @@ class z_extfilter_oxattributelist extends z_extfilter_oxattributelist_parent
                 }
             }
         }
-        oxSession::setVar( "session_attrfilter", $aSessionFilter);
+        oxRegistry::getSession()->setVariable( "session_attrfilter", $aSessionFilter);
         stopProfile("getattributes");
         return $this;
     }

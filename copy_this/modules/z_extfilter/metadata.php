@@ -6,7 +6,7 @@ $aModule = array(
         'de'=>'Stellt alle Attributwerte dar',
         'en'=>'Enables all attribute values',
     ),
-    'version'     => '1.1',
+    'version'     => '2.0',
     'url'         => 'http://zunderweb.de',
     'email'       => 'info@zunderweb.de',
     'author'      => 'Zunderweb',
