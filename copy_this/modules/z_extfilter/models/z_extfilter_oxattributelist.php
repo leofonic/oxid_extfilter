@@ -41,15 +41,19 @@ class z_extfilter_oxattributelist extends z_extfilter_oxattributelist_parent
                 //get Identifier
                 $oValueId = $oStr->htmlspecialchars( $sAttValue );
 
-                //value already selected?
+                 //value already selected?
                 if (isset($aSessionFilter[$sActCat][$iLang][$sAttId]) && $aSessionFilter[$sActCat][$iLang][$sAttId] == $sAttValue){
                     $blSelected = 1;
-                }
-                //anything found?
-                if (!$blSelected && !in_array(strtolower($sAttValue),$aCurrentAttributeValues[$sAttId])) {
-                    $blDisabled = 1;
+             
+				}
+				 //anything found?
+                elseif (!$blSelected && !in_array(strtolower($sAttValue),$aCurrentAttributeValues[$sAttId])) {
+					// olg: wir lassen nur mögliche Kombinationen durch, ausser wenn wir nur ein Dropdown haben
+                    $blDisabled = $this->_checkMultipleDropdowns($aAllAttributes) ? 1 : 0;
                     $blSelected = 0;
+						
                 }
+
 
                 //add to array
                 $sAttValueId = md5( $sAttValue );
@@ -66,6 +70,18 @@ class z_extfilter_oxattributelist extends z_extfilter_oxattributelist_parent
         stopProfile("getattributes");
         return $this;
     }
+    
+    	protected function _checkMultipleDropdowns( $olgSorted ){
+			$olgAttributesCount = count($olgSorted) - 1;
+			arsort($olgSorted);
+            if($olgSorted[0]["sAttId"]==$olgSorted[$olgAttributesCount]["sAttId"]){
+           return FALSE;
+			} else {
+				 return TRUE;
+			}
+	}
+
+
     protected function _getAttributeValues( $sActCat, $aFilter, $iLang){
 
         $oArtList = oxNew( "oxarticlelist");
