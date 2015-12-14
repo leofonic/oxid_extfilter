@@ -17,3 +17,4 @@ Changelog
 ---
 
 	2015-01-22	Update for OXID 4.9 by ProudCommerce (www.proudcommerce.com)
+    2015-12-14  Some bugfixes, update for 4.9.6
