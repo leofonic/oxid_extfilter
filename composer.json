@@ -1,0 +1,20 @@
+{
+    "name": "zunderweb/z_extfilter",
+    "description": "Zunderweb Attributfilter Module",
+    "type": "oxideshop-module",
+    "keywords": ["oxid", "modules", "eShop"],
+    "homepage": "http://zunderweb.de",
+    "license": [
+        "GPL-3.0-only"
+    ],
+    "extra": {
+        "oxideshop": {
+            "target-directory": "zunderweb/Extfilter"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Zunderweb\\Extfilter\\": "../../../source/modules/Zunderweb/Extfilter"
+        }
+    }
+}
