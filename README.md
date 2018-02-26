@@ -12,24 +12,3 @@ OXID eShop 6
 
 2. `composer require zunderweb/z_extfilter:dev-oxid_6`
 
-
-
-### Installation (Alternativ)
-
-`composer require......` (todo)
-
-
-### Installation (Alternativ)
-
-1. Dateien kopieren nach: `source/modules/zunderweb/Extfilter`
-
-2. Eintrag in composer.json:
-
-    "autoload": {
-        "psr-4": {
-            "Zunderweb\\Extfilter\\": "./source/modules/zunderweb/Extfilter"
-            }
-
-    },
-
-3. `composer dump-autoload`

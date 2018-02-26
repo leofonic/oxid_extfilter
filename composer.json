@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Zunderweb\\Extfilter\\": "../../../source/modules/Zunderweb/Extfilter"
+            "Zunderweb\\Extfilter\\": "../../../source/modules/zunderweb/Extfilter"
         }
     }
 }
